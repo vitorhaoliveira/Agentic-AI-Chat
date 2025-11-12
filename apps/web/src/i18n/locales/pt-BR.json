@@ -1,0 +1,84 @@
+{
+  "login": {
+    "title": "Bem-vindo",
+    "subtitle": "Por favor, insira seus dados para entrar",
+    "username": {
+      "label": "Email",
+      "placeholder": "Digite seu email ou nome de usuário"
+    },
+    "password": {
+      "label": "Senha",
+      "placeholder": "Digite sua senha"
+    },
+    "button": {
+      "login": "Entrar",
+      "signingIn": "Entrando..."
+    },
+    "demo": "Demo: Usuário: demo | Senha: password123",
+    "errors": {
+      "loginFailed": "Falha no login",
+      "invalidCredentials": "Usuário ou senha inválidos",
+      "validationError": "Formato de credenciais inválido",
+      "networkError": "Erro de conexão. Por favor, tente novamente.",
+      "genericError": "Ocorreu um erro. Por favor, tente novamente."
+    }
+  },
+  "chat": {
+    "title": "Agentic AI Chat",
+    "sidebar": {
+      "history": "Histórico de Conversas",
+      "newChat": "Nova Conversa",
+      "noConversations": "Nenhuma conversa ainda",
+      "noResults": "Nenhuma conversa encontrada",
+      "tools": "Ferramentas Disponíveis",
+      "toolsList": {
+        "weather": "Informações do tempo",
+        "currency": "Taxas de câmbio",
+        "pdf": "Busca em PDFs"
+      }
+    },
+    "header": {
+      "title": "Assistente IA",
+      "subtitle": "Pergunte-me sobre clima, taxas de câmbio ou PDFs"
+    },
+    "welcome": {
+      "title": "Bem-vindo ao Agentic AI Chat!",
+      "subtitle": "Comece uma conversa digitando uma mensagem abaixo.",
+      "feature1": "Pergunte sobre o clima em qualquer cidade",
+      "feature2": "Converta moedas instantaneamente",
+      "feature3": "Analise documentos PDF",
+      "examples": "Tente perguntar:",
+      "example1": "Qual é o clima em São Paulo?",
+      "example2": "Converta 100 USD para EUR",
+      "example3": "Busque informações no meu PDF"
+    },
+    "input": {
+      "placeholder": "Digite sua mensagem...",
+      "placeholderShift": "(Shift+Enter para nova linha)",
+      "attachPdf": "Anexar PDF",
+      "send": "Enviar",
+      "hint": "Pergunte sobre clima, taxas de câmbio ou PDFs enviados"
+    },
+    "pdf": {
+      "title": "Documentos PDF",
+      "description": "Envie PDFs para fazer perguntas",
+      "dragDrop": "Arraste e solte um arquivo PDF aqui",
+      "selectFile": "Selecionar PDF",
+      "uploading": "Enviando PDF...",
+      "uploaded": "PDFs Enviados",
+      "noFiles": "Nenhum PDF enviado ainda"
+    },
+    "logout": "Sair"
+  },
+  "modal": {
+    "deleteConversation": {
+      "title": "Deletar Conversa",
+      "message": "Tem certeza que deseja deletar esta conversa? Esta ação não pode ser desfeita.",
+      "conversationLabel": "Conversa a deletar",
+      "cancel": "Cancelar",
+      "delete": "Deletar",
+      "close": "Fechar modal"
+    }
+  }
+}
+

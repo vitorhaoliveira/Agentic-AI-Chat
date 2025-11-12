@@ -1,0 +1,84 @@
+{
+  "login": {
+    "title": "Welcome Back",
+    "subtitle": "Please enter your details to log in",
+    "username": {
+      "label": "Email",
+      "placeholder": "Enter your email or username"
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Enter your password"
+    },
+    "button": {
+      "login": "Login",
+      "signingIn": "Signing in..."
+    },
+    "demo": "Demo: Username: demo | Password: password123",
+    "errors": {
+      "loginFailed": "Login failed",
+      "invalidCredentials": "Invalid username or password",
+      "validationError": "Invalid credentials format",
+      "networkError": "Network error. Please try again.",
+      "genericError": "An error occurred. Please try again."
+    }
+  },
+  "chat": {
+    "title": "Agentic AI Chat",
+    "sidebar": {
+      "history": "Chat History",
+      "newChat": "New Chat",
+      "noConversations": "No conversations yet",
+      "noResults": "No conversations found",
+      "tools": "Available Tools",
+      "toolsList": {
+        "weather": "Weather information",
+        "currency": "Currency exchange rates",
+        "pdf": "PDF content search"
+      }
+    },
+    "header": {
+      "title": "AI Assistant",
+      "subtitle": "Ask me about weather, currency rates, or PDFs"
+    },
+    "welcome": {
+      "title": "Welcome to Agentic AI Chat!",
+      "subtitle": "Start a conversation by typing a message below.",
+      "feature1": "Ask about weather in any city",
+      "feature2": "Convert currencies instantly",
+      "feature3": "Analyze PDF documents",
+      "examples": "Try asking:",
+      "example1": "What's the weather in São Paulo?",
+      "example2": "Convert 100 USD to EUR",
+      "example3": "Search for information in my PDF"
+    },
+    "input": {
+      "placeholder": "Type your message...",
+      "placeholderShift": "(Shift+Enter for new line)",
+      "attachPdf": "Attach PDF",
+      "send": "Send",
+      "hint": "Ask about weather, currency exchange rates, or uploaded PDFs"
+    },
+    "pdf": {
+      "title": "PDF Documents",
+      "description": "Upload PDFs to ask questions",
+      "dragDrop": "Drag and drop a PDF file here",
+      "selectFile": "Select PDF",
+      "uploading": "Uploading PDF...",
+      "uploaded": "Uploaded PDFs",
+      "noFiles": "No PDFs uploaded yet"
+    },
+    "logout": "Logout"
+  },
+  "modal": {
+    "deleteConversation": {
+      "title": "Delete Conversation",
+      "message": "Are you sure you want to delete this conversation? This action cannot be undone.",
+      "conversationLabel": "Conversation to delete",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "close": "Close modal"
+    }
+  }
+}
+
