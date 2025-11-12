@@ -220,8 +220,8 @@ src/
 ├── services/            # Core services
 │   ├── llm.ts           # OpenAI client
 │   ├── pdf-index.ts     # TF-IDF indexing
-│   ├── pdf-processor.service.ts    # ⭐ PDF processing
-│   └── request-parser.service.ts   # ⭐ Request parsing
+│   ├── pdf-processor.service.ts    # PDF processing
+│   └── request-parser.service.ts   # Request parsing
 └── utils/               # Utilities
     └── streaming.ts     # SSE helpers
 ```
