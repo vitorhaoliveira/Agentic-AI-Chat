@@ -1,6 +1,20 @@
 {
-  "buildCommand": "npm run build --workspace=@agentic-ai-chat/shared && npm run build --workspace=@agentic-ai-chat/api",
-  "installCommand": "npm install",
-  "outputDirectory": "apps/api/dist"
+  "version": 2,
+  "builds": [
+    {
+      "src": "apps/api/api/index.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "apps/api/api/index.ts"
+    },
+    {
+      "src": "/health",
+      "dest": "apps/api/api/index.ts"
+    }
+  ]
 }
 
