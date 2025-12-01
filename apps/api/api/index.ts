@@ -20,6 +20,7 @@ try {
   logger.info('Environment configuration validated');
 } catch (error) {
   logger.fatal({ error }, 'Invalid configuration');
+  throw error; // Re-throw para Vercel ver o erro
 }
 
 // Create Fastify instance (singleton)
@@ -67,9 +68,24 @@ async function buildApp() {
   return app;
 }
 
-// Vercel handler
+// Vercel handler - CORRIGIDO
 export default async function handler(req: any, res: any) {
-  const app = await buildApp();
-  app.server.emit('request', req, res);
+  try {
+    const app = await buildApp();
+    
+    // Aguarda o app estar pronto
+    await app.ready();
+    
+    // Usa o método correto para serverless
+    // @ts-ignore
+    await app.routing(req, res);
+  } catch (error) {
+    console.error('Handler error:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Internal server error',
+      message: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
 }
 
