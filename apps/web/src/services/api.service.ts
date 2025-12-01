@@ -31,7 +31,7 @@ class ApiService {
 
     try {
       const response = await fetch(
-        `${appConfig.api.baseUrl}/auth/login`,
+        `${appConfig.api.baseUrl}/api/auth/login`,
         {
           method: 'POST',
           headers: this.getHeaders(false),
