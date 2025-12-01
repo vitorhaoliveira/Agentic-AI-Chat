@@ -241,7 +241,7 @@ app.post('/api/chat/stream-with-pdf', authMiddleware, upload.single('pdf'), asyn
     if (req.file) {
       try {
         const pdfDoc = await indexPdf(req.file.originalname, req.file.buffer);
-        pdfContext = `\n\nPDF Context (${pdfDoc.filename}):\n${pdfDoc.text?.substring(0, 8000) || 'No text extracted'}`;
+        pdfContext = `\n\nPDF Context (${pdfDoc.filename}):\n${(pdfDoc as any).content?.substring(0, 8000) || 'No text extracted'}`;
         res.write(`event: tool\ndata: ${JSON.stringify({ tool: 'pdf_reader' })}\n\n`);
       } catch (pdfError) {
         console.error('PDF processing error:', pdfError);
