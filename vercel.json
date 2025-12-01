@@ -1,0 +1,6 @@
+{
+  "buildCommand": "npm run build --workspace=@agentic-ai-chat/shared && npm run build --workspace=@agentic-ai-chat/api",
+  "installCommand": "npm install",
+  "outputDirectory": "apps/api/dist"
+}
+

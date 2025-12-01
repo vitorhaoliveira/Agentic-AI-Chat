@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/server.ts",
+    "prebuild": "npm run build --workspace=@agentic-ai-chat/shared || (cd ../../packages/shared && npm run build)",
     "build": "tsc",
     "start": "node dist/server.js",
     "lint": "eslint src --ext .ts",
