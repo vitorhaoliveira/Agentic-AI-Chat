@@ -35,8 +35,13 @@ async function buildApp() {
   });
 
   await fastify.register(cors, {
-    ...appConfig.cors,
     origin: process.env.CORS_ORIGIN || true,
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    exposedHeaders: ['Content-Type', 'Authorization'],
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
   });
 
   await fastify.register(multipart, {
@@ -76,18 +81,26 @@ export default async function handler(req: any, res: any) {
     // Aguarda o app estar pronto
     await app.ready();
     
+    // Prepara o payload
+    let payload = req.body;
+    if (payload && typeof payload === 'object') {
+      payload = JSON.stringify(payload);
+    }
+    
     // Usa inject para simular requisição HTTP
     const response = await app.inject({
-      method: req.method,
-      url: req.url,
+      method: req.method || 'GET',
+      url: req.url || '/',
       headers: req.headers,
-      payload: req.body,
-      query: req.query,
+      payload: payload,
     });
     
     // Copia os headers da resposta
     Object.keys(response.headers).forEach((key) => {
-      res.setHeader(key, response.headers[key]);
+      const value = response.headers[key];
+      if (value !== undefined) {
+        res.setHeader(key, value);
+      }
     });
     
     // Envia a resposta
