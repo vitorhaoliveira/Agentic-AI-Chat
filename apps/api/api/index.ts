@@ -99,7 +99,7 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
   
   // Use Fastify's inject method to handle the request
   const response = await fastify.inject({
-    method: req.method || 'GET',
+    method: (req.method || 'GET') as any,
     url: url.split('?')[0],
     headers: req.headers as Record<string, string>,
     payload: body || undefined,
