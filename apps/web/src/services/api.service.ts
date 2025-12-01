@@ -31,14 +31,14 @@ class ApiService {
 
     try {
       const response = await fetch(
-        `${appConfig.api.baseUrl}/api/auth/login`,
+        `${appConfig.api.baseUrl}/auth/login`,
         {
           method: 'POST',
           headers: this.getHeaders(false),
           body: JSON.stringify(credentials),
         }
       );
-
+      console.log(response);
       const data = await response.json();
 
       if (!response.ok) {
