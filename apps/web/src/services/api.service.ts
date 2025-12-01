@@ -31,7 +31,7 @@ class ApiService {
 
     try {
       const response = await fetch(
-        `${appConfig.api.baseUrl}/auth/login`,
+        `${appConfig.api.baseUrl}/api/auth/login`,
         {
           method: 'POST',
           headers: this.getHeaders(false),
@@ -94,13 +94,13 @@ class ApiService {
           headers['Authorization'] = `Bearer ${token}`;
         }
 
-        response = await fetch(`${appConfig.api.baseUrl}/chat/stream`, {
+        response = await fetch(`${appConfig.api.baseUrl}/api/chat/stream`, {
           method: 'POST',
           headers,
           body: formData,
         });
       } else {
-        response = await fetch(`${appConfig.api.baseUrl}/chat/stream`, {
+        response = await fetch(`${appConfig.api.baseUrl}/api/chat/stream`, {
           method: 'POST',
           headers: this.getHeaders(),
           body: JSON.stringify(request),
@@ -166,7 +166,7 @@ class ApiService {
     }
 
     try {
-      const response = await fetch(`${appConfig.api.baseUrl}/pdf/upload`, {
+      const response = await fetch(`${appConfig.api.baseUrl}/api/pdf/upload`, {
         method: 'POST',
         headers,
         body: formData,
@@ -189,7 +189,7 @@ class ApiService {
 
   async listPdfs(): Promise<ApiResponse> {
     try {
-      const response = await fetch(`${appConfig.api.baseUrl}/pdf/list`, {
+      const response = await fetch(`${appConfig.api.baseUrl}/api/pdf/list`, {
         method: 'GET',
         headers: this.getHeaders(),
       });
