@@ -68,7 +68,7 @@ async function buildApp() {
   return app;
 }
 
-// Vercel handler - CORRIGIDO
+// Vercel handler - usando inject
 export default async function handler(req: any, res: any) {
   try {
     const app = await buildApp();
@@ -76,9 +76,22 @@ export default async function handler(req: any, res: any) {
     // Aguarda o app estar pronto
     await app.ready();
     
-    // Usa o método correto para serverless
-    // @ts-ignore
-    await app.routing(req, res);
+    // Usa inject para simular requisição HTTP
+    const response = await app.inject({
+      method: req.method,
+      url: req.url,
+      headers: req.headers,
+      payload: req.body,
+      query: req.query,
+    });
+    
+    // Copia os headers da resposta
+    Object.keys(response.headers).forEach((key) => {
+      res.setHeader(key, response.headers[key]);
+    });
+    
+    // Envia a resposta
+    res.status(response.statusCode).send(response.payload);
   } catch (error) {
     console.error('Handler error:', error);
     res.status(500).json({
