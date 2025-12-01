@@ -1,6 +1,4 @@
 {
-  "buildCommand": "npm run prebuild && npm run build",
-  "installCommand": "npm install",
   "rewrites": [
     {
       "source": "/(.*)",
