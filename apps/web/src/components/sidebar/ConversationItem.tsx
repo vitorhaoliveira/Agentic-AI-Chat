@@ -1,4 +1,5 @@
 import { Trash2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import type { Conversation } from '@agentic-ai-chat/shared';
 import { useConversationStore } from '@/store/conversationStore';
 import { useMessageStore } from '@/store/messageStore';
@@ -16,6 +17,7 @@ export const ConversationItem = memo(function ConversationItem({
   isActive,
   onDeleteClick,
 }: ConversationItemProps) {
+  const { t } = useTranslation();
   const loadConversation = useConversationStore((s) => s.loadConversation);
   const conversations = useConversationStore((s) => s.conversations);
   const setMessages = useMessageStore((s) => s.setMessages);
@@ -55,8 +57,8 @@ export const ConversationItem = memo(function ConversationItem({
         <button
           onClick={handleDelete}
           className="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-red-500/20 rounded"
-          title="Delete conversation"
-          aria-label="Delete conversation"
+          title={t('chat.sidebar.deleteConversation')}
+          aria-label={t('chat.sidebar.deleteConversation')}
         >
           <Trash2 className="h-3.5 w-3.5 text-red-400" />
         </button>

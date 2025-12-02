@@ -114,7 +114,7 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
                 }`}
               >
                 <Paperclip className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
-                <span className="hidden sm:inline">Attach PDF</span>
+                <span className="hidden sm:inline">{t('chat.input.attachPdf')}</span>
               </label>
             </div>
 
@@ -125,7 +125,7 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
               className="bg-[#4169E1] hover:bg-[#3559d1] text-white h-8 md:h-9 px-4 md:px-6 rounded-lg font-medium text-xs md:text-sm"
             >
               <Send className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
-              <span className="hidden sm:inline">Send</span>
+              <span className="hidden sm:inline">{t('chat.input.send')}</span>
             </Button>
           </div>
         </div>

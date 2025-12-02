@@ -21,7 +21,7 @@ This is a **monorepo** with npm workspaces:
 the-project/
 ├── apps/
 │   ├── web/          # React + Vite frontend
-│   └── api/          # Fastify + Custom Agent System backend
+│   └── api/          # Express + Custom Agent System backend
 ├── packages/
 │   └── shared/       # Shared TypeScript types and Zod schemas
 └── docs/
@@ -50,7 +50,7 @@ the-project/
 - Vitest (testing framework)
 
 **Backend**:
-- Node.js, Fastify, TypeScript
+- Node.js, Express, TypeScript
 - Custom Agent Orchestration (lightweight, no LangGraph)
 - OpenAI GPT-4o-mini (LLM with streaming)
 - Pino (structured logging)
@@ -201,15 +201,20 @@ src/
 │   ├── app.config.ts    # App settings
 │   ├── llm.config.ts    # LLM configuration
 │   └── logger.config.ts # Logging setup
-├── middleware/          # Reusable middleware
-│   ├── auth.middleware.ts
+├── express/             # Express server
+│   ├── server.express.ts  # Main server
+│   ├── routes/          # API routes
+│   │   ├── auth.express.ts      # Authentication
+│   │   ├── chat.express.ts      # Chat streaming
+│   │   └── pdf.express.ts       # PDF management
+│   ├── middleware/      # Express middleware
+│   │   └── auth.express.ts      # JWT authentication
+│   └── utils/           # Express utilities
+│       └── sse-stream.express.ts  # SSE helpers
+├── middleware/          # Error handling
 │   └── error-handler.middleware.ts
 ├── prompts/             # LLM prompt templates
 │   └── agent-prompts.ts
-├── routes/              # API routes
-│   ├── auth.ts          # Authentication
-│   ├── chat.ts          # Chat streaming
-│   └── pdf.ts           # PDF management
 ├── agents/              # Agent orchestration
 │   ├── state.ts         # Agent state
 │   └── graph.ts         # Agent graph
@@ -217,13 +222,9 @@ src/
 │   ├── weather.ts       # Weather API
 │   ├── currency.ts      # Currency API
 │   └── pdf-reader.ts    # PDF search
-├── services/            # Core services
-│   ├── llm.ts           # OpenAI client
-│   ├── pdf-index.ts     # TF-IDF indexing
-│   ├── pdf-processor.service.ts    # PDF processing
-│   └── request-parser.service.ts   # Request parsing
-└── utils/               # Utilities
-    └── streaming.ts     # SSE helpers
+└── services/            # Core services
+    ├── llm.ts           # OpenAI client
+    └── pdf-index.ts     # TF-IDF indexing
 ```
 
 ### Shared (packages/shared)
@@ -323,5 +324,5 @@ MIT
 - [Open-Meteo](https://open-meteo.com) - Weather API
 - [ExchangeRate-API](https://www.exchangerate-api.com) - Currency API
 - [shadcn/ui](https://ui.shadcn.com) - UI components
-- [Fastify](https://www.fastify.io) - HTTP server
+- [Express](https://expressjs.com) - HTTP server
 

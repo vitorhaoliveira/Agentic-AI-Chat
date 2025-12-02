@@ -30,6 +30,8 @@
       "newChat": "New Chat",
       "noConversations": "No conversations yet",
       "noResults": "No conversations found",
+      "searchPlaceholder": "Search Chats",
+      "deleteConversation": "Delete conversation",
       "tools": "Available Tools",
       "toolsList": {
         "weather": "Weather information",

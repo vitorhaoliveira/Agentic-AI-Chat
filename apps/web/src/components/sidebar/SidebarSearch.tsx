@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 
@@ -7,6 +8,7 @@ interface SidebarSearchProps {
 }
 
 export function SidebarSearch({ onSearch }: SidebarSearchProps) {
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,7 +22,7 @@ export function SidebarSearch({ onSearch }: SidebarSearchProps) {
       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500" />
       <Input
         type="text"
-        placeholder="Search Chats"
+        placeholder={t('chat.sidebar.searchPlaceholder')}
         value={searchQuery}
         onChange={handleChange}
         className="w-full pl-10 bg-[#1a1a2e]/80 border-gray-700/50 text-white placeholder:text-gray-500 focus:border-[#4169E1] h-10"

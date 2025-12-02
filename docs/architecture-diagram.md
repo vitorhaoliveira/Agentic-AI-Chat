@@ -13,7 +13,7 @@ graph TB
         Store --> API
     end
     
-    subgraph "Backend (Node + Fastify)"
+    subgraph "Backend (Node + Express)"
         Routes[Routes Layer]
         Auth[Auth Service]
         Agent[Agent Orchestrator]
@@ -417,8 +417,8 @@ graph TB
         end
         
         subgraph "Backend Servers"
-            API1[Fastify - Server 1]
-            API2[Fastify - Server 2]
+            API1[Express - Server 1]
+            API2[Express - Server 2]
         end
         
         subgraph "Storage"

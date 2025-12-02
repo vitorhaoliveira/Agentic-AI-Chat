@@ -30,6 +30,8 @@
       "newChat": "Nova Conversa",
       "noConversations": "Nenhuma conversa ainda",
       "noResults": "Nenhuma conversa encontrada",
+      "searchPlaceholder": "Buscar Conversas",
+      "deleteConversation": "Deletar conversa",
       "tools": "Ferramentas Disponíveis",
       "toolsList": {
         "weather": "Informações do tempo",
