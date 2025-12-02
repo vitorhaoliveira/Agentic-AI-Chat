@@ -121,6 +121,13 @@ export function LoginForm() {
             >
               {isLoading ? t('login.button.signingIn') : t('login.button.login')}
             </Button>
+
+            {/* Demo credentials */}
+            <div className="mt-4 p-4 bg-[#0f0f23]/50 border border-gray-700/50 rounded-lg">
+              <p className="text-xs text-gray-400 text-center mb-2 font-medium">
+                {t('login.demo')}
+              </p>
+            </div>
           </form>
         </div>
       </div>
