@@ -8,7 +8,9 @@
     },
     "password": {
       "label": "Password",
-      "placeholder": "Enter your password"
+      "placeholder": "Enter your password",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password"
     },
     "button": {
       "login": "Login",

@@ -8,7 +8,9 @@
     },
     "password": {
       "label": "Senha",
-      "placeholder": "Digite sua senha"
+      "placeholder": "Digite sua senha",
+      "showPassword": "Mostrar senha",
+      "hidePassword": "Ocultar senha"
     },
     "button": {
       "login": "Entrar",
