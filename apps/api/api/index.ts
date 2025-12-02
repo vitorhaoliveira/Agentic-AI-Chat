@@ -31,11 +31,18 @@ const upload = multer({
 app.use(cors({
   origin: process.env.CORS_ORIGIN || '*',
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 app.use(express.json());
 
 // JWT Middleware
 const authMiddleware = (req: any, res: any, next: any) => {
+  // Allow OPTIONS requests (CORS preflight) to pass through
+  if (req.method === 'OPTIONS') {
+    return next();
+  }
+  
   try {
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
