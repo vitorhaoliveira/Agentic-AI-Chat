@@ -34,7 +34,6 @@ npm install
 
 # Setup environment
 cp .env.example .env
-# Edit .env and add your OPENAI_API_KEY
 
 # Run in development
 npm run dev
@@ -162,7 +161,7 @@ npm run lint
 
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
-| `OPENAI_API_KEY` | ✅ Yes | - | OpenAI API key |
+| `GROQ_API_KEY` | ✅ Yes | - | Groq API key |
 | `PORT` | No | `3001` | Server port |
 | `NODE_ENV` | No | `development` | Environment |
 | `JWT_SECRET` | Prod only | (default) | JWT secret |

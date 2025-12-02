@@ -35,7 +35,7 @@ export const appConfig = {
 } as const;
 
 export function validateConfig(): void {
-  const requiredEnvVars = ['OPENAI_API_KEY'];
+  const requiredEnvVars = ['GROQ_API_KEY'];
   const missing = requiredEnvVars.filter((key) => !process.env[key]);
 
   if (missing.length > 0) {

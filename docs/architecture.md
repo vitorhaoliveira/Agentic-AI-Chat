@@ -292,9 +292,6 @@ The architecture supports:
 # Install dependencies
 npm install
 
-# Create .env in apps/api
-# Add OPENAI_API_KEY
-
 # Start frontend and backend
 npm run dev
 ```

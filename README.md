@@ -52,7 +52,7 @@ the-project/
 **Backend**:
 - Node.js, Express, TypeScript
 - Custom Agent Orchestration (lightweight, no LangGraph)
-- Groq Llama 3 70B (Free LLM with ultra-fast streaming) ⚡
+- Groq Llama 3.3 70B (Free LLM with ultra-fast streaming) ⚡
 - Pino (structured logging)
 - Vitest (testing framework)
 - pdf-parse (PDF extraction)
@@ -149,7 +149,7 @@ See **[PDF_TROUBLESHOOTING.md](PDF_TROUBLESHOOTING.md)** if you get "cannot read
 The system uses a **custom lightweight agent orchestration** (no external dependencies):
 
 ```
-User Query → Router Agent (LLM) → [Weather/Currency/PDF] Agent → Synthesizer (Llama 3 70B) → Response
+User Query → Router Agent (LLM) → [Weather/Currency/PDF] Agent → Synthesizer (Llama 3.3 70B) → Response
 ```
 
 **Key Difference from Workflows**:
@@ -167,10 +167,10 @@ Agents autonomously decide what tools to use based on the user's query.
 
 **Example Flow**:
 1. User: "qual a cotação do dólar?"
-2. Router → Llama 3 analyzes → "currency intent detected"
-3. Currency Agent → Llama 3 extracts → "FROM:USD TO:BRL"
+2. Router → Llama 3.3 analyzes → "currency intent detected"
+3. Currency Agent → Llama 3.3 extracts → "FROM:USD TO:BRL"
 4. API call → Exchange rate retrieved
-5. Synthesizer → Llama 3 streams → "1 USD = 5.23 BRL"
+5. Synthesizer → Llama 3.3 streams → "1 USD = 5.23 BRL"
 
 ## Project Structure
 
@@ -235,7 +235,7 @@ src/
 │   ├── currency.ts      # Currency API
 │   └── pdf-reader.ts    # PDF search
 └── services/            # Core services
-    ├── llm.ts           # Groq client (Llama 3)
+    ├── llm.ts           # Groq client (Llama 3.3)
     └── pdf-index.ts     # TF-IDF indexing
 ```
 
@@ -258,7 +258,7 @@ src/
 
 ### Real-time Streaming
 
-The chat uses Server-Sent Events (SSE) to stream Llama 3 tokens in real-time with ultra-fast responses from Groq's infrastructure.
+The chat uses Server-Sent Events (SSE) to stream Llama 3.3 tokens in real-time with ultra-fast responses from Groq's infrastructure.
 
 ### PDF Indexing
 
@@ -273,7 +273,7 @@ PDFs are indexed using TF-IDF (Term Frequency-Inverse Document Frequency):
 Custom lightweight orchestration manages the agent workflow:
 1. **Router**: LLM analyzes intent and routes to appropriate tool
 2. **Tool Agents**: LLM extracts entities (location, currency, etc.), executes tasks
-3. **Synthesizer**: Llama 3 70B streams natural response via SSE
+3. **Synthesizer**: Llama 3.3 70B streams natural response via SSE
 
 **Key Features**:
 - ✅ No external dependencies (removed LangGraph)
@@ -318,16 +318,16 @@ MIT
 
 ## Cost & Performance
 
-**Groq Costs** (Llama 3 70B):
+**Groq Costs** (Llama 3.3 70B):
 - ✅ **$0.00** - Completely FREE
 - ✅ **14,400 requests/day** - Generous free tier
 - ✅ **No credit card required**
 - ✅ **No hidden costs**
 
-**Why Groq + Llama 3?**
+**Why Groq + Llama 3.3?**
 - ✅ **100% Free** - Perfect for portfolios
 - ✅ **Ultra Fast** - 10x faster than GPT-4
-- ✅ **Open Source** - Llama 3 70B model
+- ✅ **Open Source** - Llama 3.3 70B model (newest version!)
 - ✅ **Production Ready** - Used by thousands of apps
 - ✅ **High Quality** - Comparable to GPT-4
 
@@ -339,7 +339,7 @@ MIT
 ## Acknowledgments
 
 - [Groq](https://groq.com) - Ultra-fast LLM inference (Free!)
-- [Meta AI](https://ai.meta.com) - Llama 3 70B model
+- [Meta AI](https://ai.meta.com) - Llama 3.3 70B model
 - [Open-Meteo](https://open-meteo.com) - Weather API
 - [ExchangeRate-API](https://www.exchangerate-api.com) - Currency API
 - [shadcn/ui](https://ui.shadcn.com) - UI components

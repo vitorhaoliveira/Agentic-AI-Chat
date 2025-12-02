@@ -18,13 +18,14 @@ try {
   validateConfig();
   logger.info('Environment configuration validated');
 
-  // Additional check for OpenAI API key
-  if (!process.env.OPENAI_API_KEY) {
+  // Additional check for Groq API key
+  if (!process.env.GROQ_API_KEY) {
     verifyEnvLoaded();
-    logger.fatal('OPENAI_API_KEY is required but not found in environment');
-    console.error('\n❌ ERROR: OPENAI_API_KEY not found!');
+    logger.fatal('GROQ_API_KEY is required but not found in environment');
+    console.error('\n❌ ERROR: GROQ_API_KEY not found!');
     console.error('   Please create a .env file in apps/api/ with:');
-    console.error('   OPENAI_API_KEY=your_api_key_here\n');
+    console.error('   GROQ_API_KEY=your_api_key_here');
+    console.error('   Get your free API key at: https://console.groq.com\n');
     process.exit(1);
   }
 } catch (error) {

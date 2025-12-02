@@ -118,7 +118,7 @@ router.post('/stream', async (req, res) => {
         { role: 'user' as const, content: message },
       ];
 
-      // Stream completion from OpenAI
+      // Stream completion from Groq
       logger.debug('Starting LLM streaming');
       let tokenCount = 0;
       for await (const token of streamCompletion({ messages })) {

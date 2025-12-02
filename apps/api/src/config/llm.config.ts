@@ -6,12 +6,12 @@ export const llmConfig = {
   
   // Model Configuration
   model: {
-    // Groq models available:
-    // - llama3-70b-8192: Llama 3 70B (best quality)
-    // - llama3-8b-8192: Llama 3 8B (faster)
+    // Groq models available (December 2024):
+    // - llama-3.3-70b-versatile: Llama 3.3 70B (best quality, newest) ⭐
+    // - llama-3.1-8b-instant: Llama 3.1 8B (fastest)
     // - mixtral-8x7b-32768: Mixtral (32K context)
-    // - gemma-7b-it: Google Gemma (fast)
-    chat: 'llama3-70b-8192',
+    // - gemma2-9b-it: Google Gemma 2 (fast)
+    chat: 'llama-3.3-70b-versatile',
     temperature: 0.7,
     maxTokens: 1000,
   },
