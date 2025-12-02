@@ -22,15 +22,25 @@ const INDEX_FILE = join(DATA_DIR, 'pdf-index.json');
 
 // In-memory storage
 let pdfIndices: PdfIndex[] = [];
+let indexInitialized = false;
 
-// Ensure data directory exists
-if (!existsSync(DATA_DIR)) {
-  mkdirSync(DATA_DIR, { recursive: true });
-  logger.info({ dataDir: DATA_DIR }, 'Data directory created');
+// Ensure data directory exists (lazy initialization for serverless)
+function ensureDataDir(): void {
+  try {
+    if (!existsSync(DATA_DIR)) {
+      mkdirSync(DATA_DIR, { recursive: true });
+      logger.info({ dataDir: DATA_DIR }, 'Data directory created');
+    }
+  } catch (error) {
+    // In serverless environments, file system may be read-only
+    // This is okay, we'll use in-memory storage only
+    logger.warn({ error, dataDir: DATA_DIR }, 'Could not create data directory, using in-memory storage only');
+  }
 }
 
 function loadIndex(): void {
   try {
+    ensureDataDir();
     if (existsSync(INDEX_FILE)) {
       const data = readFileSync(INDEX_FILE, 'utf-8');
       const parsed = JSON.parse(data);
@@ -42,13 +52,23 @@ function loadIndex(): void {
       logger.info({ count: pdfIndices.length }, 'PDFs loaded from index');
     }
   } catch (error) {
-    logger.error({ error }, 'Error loading PDF index');
+    // In serverless environments, file system may be read-only
+    // This is okay, we'll use in-memory storage only
+    logger.warn({ error }, 'Could not load PDF index from disk, using in-memory storage only');
     pdfIndices = [];
+  }
+}
+
+function initializeIndex(): void {
+  if (!indexInitialized) {
+    loadIndex();
+    indexInitialized = true;
   }
 }
 
 function saveIndex(): void {
   try {
+    ensureDataDir();
     // Convert Map to object for JSON serialization
     const serializable = pdfIndices.map((doc) => ({
       ...doc,
@@ -57,7 +77,9 @@ function saveIndex(): void {
     writeFileSync(INDEX_FILE, JSON.stringify(serializable, null, 2));
     logger.debug({ count: pdfIndices.length }, 'PDF index saved to disk');
   } catch (error) {
-    logger.error({ error }, 'Error saving PDF index');
+    // In serverless environments, file system may be read-only
+    // This is okay, we'll use in-memory storage only
+    logger.warn({ error }, 'Could not save PDF index to disk, using in-memory storage only');
   }
 }
 
@@ -88,6 +110,7 @@ function calculateTfIdf(text: string): Map<string, number> {
 }
 
 export async function indexPdf(filename: string, buffer: Buffer): Promise<PdfDocument> {
+  initializeIndex();
   logger.info({ filename, size: buffer.length }, 'Indexing PDF');
 
   try {
@@ -123,6 +146,7 @@ export async function indexPdf(filename: string, buffer: Buffer): Promise<PdfDoc
 }
 
 export function searchPdfs(query: string, limit = 3): Array<{ text: string; score: number; filename: string }> {
+  initializeIndex();
   logger.debug({ query, limit }, 'Searching PDFs');
   const queryTerms = calculateTfIdf(query);
   const results: Array<{ text: string; score: number; filename: string }> = [];
@@ -167,6 +191,7 @@ export function searchPdfs(query: string, limit = 3): Array<{ text: string; scor
 }
 
 export function getPdfDocuments(): PdfDocument[] {
+  initializeIndex();
   return pdfIndices.map((doc) => ({
     id: doc.id,
     filename: doc.filename,
@@ -177,6 +202,7 @@ export function getPdfDocuments(): PdfDocument[] {
 }
 
 export function getAllIndexedPdfs(): Array<{ id: string; filename: string; text: string }> {
+  initializeIndex();
   return pdfIndices
     .filter((doc) => doc.indexed)
     .map((doc) => ({
@@ -186,7 +212,7 @@ export function getAllIndexedPdfs(): Array<{ id: string; filename: string; text:
     }));
 }
 
-// Initialize - load existing index on module load
-logger.info('Initializing PDF index service');
-loadIndex();
+// Lazy initialization - don't load on module import for serverless compatibility
+// Index will be loaded on first use
+logger.info('PDF index service ready (lazy initialization)');
 
