@@ -43,10 +43,10 @@ if (!loaded) {
 
 // Export a function to verify env is loaded (for debugging)
 export function verifyEnvLoaded(): void {
-  const hasKey = !!process.env.OPENAI_API_KEY;
+  const hasKey = !!process.env.GROQ_API_KEY;
   
   if (!hasKey) {
-    console.warn('\n⚠️  WARNING: OPENAI_API_KEY not found in environment');
+    console.warn('\n⚠️  WARNING: GROQ_API_KEY not found in environment');
     console.warn(`   Current working directory: ${cwd}`);
     console.warn(`   API directory: ${apiDir}`);
     console.warn(`   Tried loading from: ${envPath}`);
@@ -54,11 +54,12 @@ export function verifyEnvLoaded(): void {
     
     if (existsSync(envPath)) {
       console.warn(`   ✅ .env file found at: ${envPath}`);
-      console.warn(`   ⚠️  But OPENAI_API_KEY is not set in the file`);
+      console.warn(`   ⚠️  But GROQ_API_KEY is not set in the file`);
     } else {
       console.warn(`   ❌ .env file not found at: ${envPath}`);
       console.warn(`   💡 Create a .env file in apps/api/ with:`);
-      console.warn(`      OPENAI_API_KEY=your_api_key_here`);
+      console.warn(`      GROQ_API_KEY=your_api_key_here`);
+      console.warn(`   🔗 Get your free API key at: https://console.groq.com`);
     }
     console.warn('');
   }

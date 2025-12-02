@@ -1,29 +1,29 @@
-import OpenAI from 'openai';
+import Groq from 'groq-sdk';
 import { llmConfig } from '../config/llm.config.js';
 import { createLogger } from '../config/logger.config.js';
 import { AppError } from '../middleware/error-handler.middleware.js';
 
 const logger = createLogger('llm-service');
 
-let openai: OpenAI | null = null;
+let groq: Groq | null = null;
 
-function getOpenAI(): OpenAI {
-  if (!openai) {
+function getGroq(): Groq {
+  if (!groq) {
     if (!llmConfig.apiKey) {
       throw new AppError(
-        'OpenAI API key is not configured',
+        'Groq API key is not configured. Get your free API key at https://console.groq.com',
         500,
-        'OPENAI_API_KEY_MISSING'
+        'GROQ_API_KEY_MISSING'
       );
     }
 
-    openai = new OpenAI({
+    groq = new Groq({
       apiKey: llmConfig.apiKey,
     });
 
-    logger.info('OpenAI client initialized');
+    logger.info('Groq client initialized', { model: llmConfig.model.chat });
   }
-  return openai;
+  return groq;
 }
 
 export interface StreamOptions {
@@ -41,7 +41,7 @@ export async function* streamCompletion(
   logger.debug({ messageCount: messages.length }, 'Starting stream completion');
 
   try {
-    const client = getOpenAI();
+    const client = getGroq();
     const stream = await client.chat.completions.create({
       model: llmConfig.model.chat,
       messages,
@@ -65,13 +65,13 @@ export async function* streamCompletion(
     logger.info({ tokenCount, responseLength: fullResponse.length }, 'Stream completed');
     options.onComplete?.(fullResponse);
   } catch (error) {
-    logger.error({ error }, 'OpenAI streaming error');
+    logger.error({ error }, 'Groq streaming error');
     const err = error instanceof Error ? error : new Error('Unknown error');
     options.onError?.(err);
     throw new AppError(
-      'Failed to stream completion from OpenAI',
+      'Failed to stream completion from Groq',
       500,
-      'OPENAI_STREAM_ERROR',
+      'GROQ_STREAM_ERROR',
       err.message
     );
   }
@@ -83,7 +83,7 @@ export async function generateCompletion(
   logger.debug({ messageCount: messages.length }, 'Generating completion');
 
   try {
-    const client = getOpenAI();
+    const client = getGroq();
     const response = await client.chat.completions.create({
       model: llmConfig.model.chat,
       messages,
@@ -97,11 +97,11 @@ export async function generateCompletion(
     
     return content;
   } catch (error) {
-    logger.error({ error }, 'OpenAI completion error');
+    logger.error({ error }, 'Groq completion error');
     throw new AppError(
-      'Failed to generate completion from OpenAI',
+      'Failed to generate completion from Groq',
       500,
-      'OPENAI_COMPLETION_ERROR',
+      'GROQ_COMPLETION_ERROR',
       error instanceof Error ? error.message : 'Unknown error'
     );
   }
