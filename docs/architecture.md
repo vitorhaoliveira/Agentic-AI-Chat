@@ -17,7 +17,7 @@ This is a full-stack agentic AI chat system built with a focus on **autonomous a
                           │ HTTP/SSE
                           ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                    Backend (Fastify)                        │
+│                    Backend (Express)                        │
 │  ┌──────────────────────────────────────────────────────┐   │
 │  │              Custom Agent System                    │   │
 │  │                                                      │   │
@@ -122,7 +122,7 @@ src/
 
 ### Backend (apps/api)
 
-**Tech Stack**: Node.js, Fastify, TypeScript, Custom Agent System, OpenAI SDK, Pino, Vitest
+**Tech Stack**: Node.js, Express, TypeScript, Custom Agent System, OpenAI SDK, Pino, Vitest
 
 **Directory Structure**:
 ```
@@ -131,16 +131,16 @@ src/
 │   ├── app.config.ts    # Application settings
 │   ├── llm.config.ts    # LLM configuration
 │   └── logger.config.ts # Logging setup
-├── middleware/          # Reusable middleware
-│   ├── auth.middleware.ts
-│   └── error-handler.middleware.ts
+├── express/             # Express server
+│   ├── server.express.ts  # Main server
+│   ├── routes/          # API routes
+│   ├── middleware/      # Express middleware
+│   └── utils/           # SSE streaming utilities
 ├── prompts/             # LLM prompt templates
 │   └── agent-prompts.ts
-├── routes/              # API routes
 ├── agents/              # Agent orchestration
 ├── tools/               # External API integrations
-├── services/            # Business logic services
-└── utils/               # Utilities
+└── services/            # Business logic services
 ```
 
 **Routes**:
@@ -304,16 +304,18 @@ npm run dev
 the-project/
 ├── apps/
 │   ├── web/        # React frontend
-│   └── api/        # Fastify backend
+│   └── api/        # Express backend
 │       ├── src/
 │       │   ├── config/      # Configuration
-│       │   ├── middleware/  # Middleware
+│       │   ├── express/     # Express server
+│       │   │   ├── server.express.ts
+│       │   │   ├── routes/
+│       │   │   ├── middleware/
+│       │   │   └── utils/
 │       │   ├── prompts/     # LLM prompts
-│       │   ├── routes/      # API routes
 │       │   ├── agents/      # Agent system
 │       │   ├── tools/       # External APIs
-│       │   ├── services/    # Business logic
-│       │   └── utils/       # Utilities
+│       │   └── services/    # Business logic
 │       ├── IMPROVEMENTS.md  # Code quality improvements
 │       ├── SETUP.md         # Setup guide
 │       └── SUMMARY.md       # Improvements summary

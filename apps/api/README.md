@@ -1,11 +1,11 @@
 # Agentic AI Chat - Backend API
 
-> **Enterprise-grade Fastify + Agent-based backend** with structured logging, centralized configuration, and comprehensive error handling.
+> **Enterprise-grade Express + Agent-based backend** with structured logging, centralized configuration, and comprehensive error handling.
 
 ## ✨ Features
 
 ### Core Functionality
-- 🚀 **RESTful API** with Fastify (high-performance)
+- 🚀 **RESTful API** with Express (reliable and widely-supported)
 - 🤖 **Autonomous Agent System** - Custom lightweight orchestration
 - 💬 **OpenAI GPT-4o-mini** integration with streaming
 - 📄 **PDF Processing** - Extract and index PDF content
@@ -54,13 +54,15 @@ Server will start at: http://localhost:3001
 ```
 src/
 ├── config/              # ⚙️ Centralized configuration
-├── middleware/          # 🔒 Reusable middleware (auth, errors)
+├── express/             # 🚀 Express server and routes
+│   ├── server.express.ts  # Main Express server
+│   ├── routes/          # API route handlers
+│   ├── middleware/      # Express middleware
+│   └── utils/           # Express utilities (SSE)
 ├── prompts/            # 💬 LLM prompt templates
 ├── services/           # 🔧 Business logic services
 ├── agents/             # 🤖 Agent orchestration
-├── tools/              # 🛠️ External API integrations
-├── routes/             # 🌐 API route handlers
-└── server.ts           # 🚀 Main server
+└── tools/              # 🛠️ External API integrations
 ```
 
 ### Key Principles
@@ -126,12 +128,12 @@ GET /health
 | Category | Technologies |
 |----------|-------------|
 | **Runtime** | Node.js, TypeScript |
-| **Framework** | Fastify (high-performance HTTP) |
+| **Framework** | Express (reliable and widely-supported) |
 | **AI/LLM** | OpenAI GPT-4o-mini (custom agent orchestration) |
 | **Logging** | Pino (structured logging) |
 | **Validation** | Zod (runtime validation) |
 | **Testing** | Vitest, @vitest/coverage-v8 |
-| **Auth** | JWT (@fastify/jwt) |
+| **Auth** | JWT (jsonwebtoken) |
 | **PDF** | pdf-parse, TF-IDF indexing |
 
 ## 🔧 Development

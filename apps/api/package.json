@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
+    "dev": "tsx watch src/express/server.express.ts",
     "prebuild": "npm run build --workspace=@agentic-ai-chat/shared || (cd ../../packages/shared && npm run build)",
     "build": "tsc",
     "vercel-build": "npm run prebuild && npm run build",
-    "start": "node dist/server.js",
+    "start": "node dist/express/server.express.js",
     "lint": "eslint src --ext .ts",
     "test": "vitest run",
     "test:watch": "vitest",
